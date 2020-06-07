@@ -12,7 +12,6 @@ declare(strict_types=1);
 namespace sFire\Db\QueryBuilder\Mysql;
 
 use sFire\Db\Exception\RuntimeException;
-use stdClass;
 
 
 /**

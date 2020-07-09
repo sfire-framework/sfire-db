@@ -308,13 +308,26 @@ class Insert extends TypeAbstract {
         }
 
         if(false === $this -> isMultidimensionalArray($this -> values) && false === $this -> isSequentialArray($this -> values)) {
-            return array_keys($this -> values);
+            return $this -> escapeColumns($this -> values);
         }
 
         if(true === $this -> isMultidimensionalArray($this -> values)) {
-            return array_keys($this -> values[0] ?? []);
+            return $this -> escapeColumns($this -> values[0] ?? []);
         }
 
         return $this -> values;
+    }
+
+
+    /**
+     * Encapsulate columns by a "`" sign
+     * @param array $columns
+     * @return array
+     */
+    private function escapeColumns(array $columns): array {
+
+        return array_map(function($column) {
+            return sprintf('`%s`', $column);
+        }, array_keys($columns));
     }
 }

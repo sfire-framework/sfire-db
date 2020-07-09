@@ -105,7 +105,6 @@ class Select extends TypeAbstract {
         $this -> buildHaving();
         $this -> buildOrderBy();
         $this -> buildLimit();
-        $this -> buildOffset();
         $this -> replaceParamWithPositionBinding();
         $this -> replaceParamArrays();
 

@@ -35,18 +35,18 @@ class Mysqli implements DbInterface {
     private CONST ITERATOR = 'iterator';
 
 
-	/**
+    /**
      * Contains all the settings for connecting to the database
-	 * @var stdClass
-	 */
-	private ?stdClass $data = null;
+     * @var stdClass
+     */
+    private ?stdClass $data = null;
 
 
-	/**
+    /**
      * Contains the active connection
-	 * @var connection
-	 */
-	private ?connection $connection = null;
+     * @var connection
+     */
+    private ?connection $connection = null;
 
 
     /**
@@ -80,16 +80,16 @@ class Mysqli implements DbInterface {
     ];
 
 
-	/**
-	 * Constructor
-	 * @param string $host The host name or ip to connect to
-	 * @param string $username The username of the database to connect to
-	 * @param string $password The password of the database to connect to
-	 * @param string $databaseName The database name
-	 * @param int $port The port number to connect to
-	 * @param string $charset The character set used for the connection
-	 */
-	public function __construct(string $host, string $username = null, string $password = null, string $databaseName = null, int $port = 3306, ?string $charset = null) {
+    /**
+     * Constructor
+     * @param string $host The host name or ip to connect to
+     * @param string $username The username of the database to connect to
+     * @param string $password The password of the database to connect to
+     * @param string $databaseName The database name
+     * @param int $port The port number to connect to
+     * @param string $charset The character set used for the connection
+     */
+    public function __construct(string $host, string $username = null, string $password = null, string $databaseName = null, int $port = 3306, ?string $charset = null) {
 
         $this -> data = (object) $this -> data;
         $this -> data -> host 		    = $host;
@@ -98,24 +98,24 @@ class Mysqli implements DbInterface {
         $this -> data -> databaseName 	= $databaseName;
         $this -> data -> port 		    = $port;
         $this -> data -> charset 	    = $charset;
-	}
+    }
 
 
-	/**
-	 * Connect to Mysql server and set charset
+    /**
+     * Connect to Mysql server and set charset
      * @return void
-	 */
-	public function connect(): void {
+     */
+    public function connect(): void {
 
-		if(false === $this -> connection instanceof connection) {
-			
-			$this -> connection = new connection($this -> data -> host, $this -> data -> username, $this -> data -> password, $this -> data -> databaseName, $this -> data -> port);
-			
-			if($this -> data -> charset) {
-	            $this -> connection -> set_charset($this -> data -> charset);
-	        }
-		}
-	}
+        if(false === $this -> connection instanceof connection) {
+
+            $this -> connection = new connection($this -> data -> host, $this -> data -> username, $this -> data -> password, $this -> data -> databaseName, $this -> data -> port);
+
+            if($this -> data -> charset) {
+                $this -> connection -> set_charset($this -> data -> charset);
+            }
+        }
+    }
 
 
     /**

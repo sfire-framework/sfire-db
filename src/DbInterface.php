@@ -30,19 +30,19 @@ interface DbInterface {
      * @param int $port [optional] The port number to connect to
      * @param string $charset [optional] The character set used for the connection
      */
-	public function __construct(string $host, string $username = null, string $password = null, string $databaseName = null, int $port = 3306, ?string $charset = null);
+    public function __construct(string $host, string $username = null, string $password = null, string $databaseName = null, int $port = 3306, ?string $charset = null);
 
 
-	/**
-	 * Connect to server
-	 */
-	public function connect();
+    /**
+     * Connect to server
+     */
+    public function connect();
 
 
-	/**
-	 * Closes the connection
-	 */
-	public function close();
+    /**
+     * Closes the connection
+     */
+    public function close();
 
 
     /**

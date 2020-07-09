@@ -45,7 +45,14 @@ trait Limit {
     private function buildLimit(): void {
 
         if(null !== $this -> limit) {
-            $this -> query[] = sprintf('LIMIT %s', $this -> limit);
+
+            $this -> query[] = 'LIMIT';
+
+            if(true === isset($this -> offset) && null !== $this -> offset) {
+                $this -> query[] = sprintf('%s,', $this -> offset);
+            }
+
+            $this -> query[] = $this -> limit;
         }
     }
 }

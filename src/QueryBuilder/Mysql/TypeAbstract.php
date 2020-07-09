@@ -118,7 +118,7 @@ abstract class TypeAbstract {
                 }
             }
         }
-
+        
         if(count($replaces) > 0) {
 
             $replaces = array_reverse($replaces);
@@ -127,7 +127,16 @@ abstract class TypeAbstract {
                 $this -> query[$replace['query']] = substr_replace($this -> query[$replace['query']], '?', $replace['position'], strlen($replace['match']));
             }
 
-            $this -> bind = $variables;
+            $bind = array_merge($this -> bind, $variables);
+
+            foreach($bind as $key => $value) {
+
+                if(false === is_int($key)) {
+                    unset($bind[$key]);
+                }
+            }
+
+            $this -> bind = $bind;
         }
     }
 
@@ -176,6 +185,7 @@ abstract class TypeAbstract {
                 $values = $this -> bind[$replace['bind']];
 
                 unset($this -> bind[$replace['bind']]);
+
                 array_splice($this -> bind, $replace['bind'], 0, array_values($values));
             }
         }

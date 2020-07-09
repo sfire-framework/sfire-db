@@ -36,19 +36,4 @@ trait Offset {
         $this -> offset = $start;
         return $this;
     }
-
-
-    /**
-     * Build the offset condition
-     * return void
-     */
-    private function buildOffset(): void {
-
-        if(true === isset($this -> limit) && null !== $this -> limit) {
-
-            if(null !== $this -> offset) {
-                $this -> query[] = sprintf(',%s', $this -> offset);
-            }
-        }
-    }
 }
